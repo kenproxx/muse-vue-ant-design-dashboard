@@ -1,5 +1,5 @@
-<!-- 
-	This is the tables page, it uses the dashboard layout in: 
+<!--
+	This is the tables page, it uses the dashboard layout in:
 	"./layouts/Dashboard.vue" .
  -->
 
@@ -54,147 +54,141 @@
 
 	// "Projects" table component.
 	import CardProjectTable2 from '../components/Cards/CardProjectTable2' ;
-	
+
 	// "Authors" table list of columns and their properties.
 	const table1Columns = [
 		{
-			title: 'AUTHOR',
+			title: 'Người dùng',
 			dataIndex: 'author',
 			scopedSlots: { customRender: 'author' },
 		},
 		{
-			title: 'FUNCTION',
+			title: 'Cấp bậc',
 			dataIndex: 'func',
 			scopedSlots: { customRender: 'func' },
 		},
 		{
-			title: 'STATUS',
+			title: 'Trạng thái',
 			dataIndex: 'status',
 			scopedSlots: { customRender: 'status' },
 		},
 		{
-			title: 'EMPLOYED',
-			dataIndex: 'employed',
-			class: 'text-muted',
-		},
-		{
-			title: '',
+			title: 'Thao tác',
 			scopedSlots: { customRender: 'editBtn' },
-			width: 50,
 		},
 	];
 
 	// "Authors" table list of rows and their properties.
 	const table1Data = [
-		{
-			key: '1',
-			author: {
-				avatar: 'images/face-2.jpg',
-				name: 'Michael John',
-				email: 'michael@mail.com',
-			},
-			func: {
-				job: 'Manager',
-				department: 'Organization',
-			},
-			status: 1,
-			employed: '23/04/18',
-		},
-		{
-			key: '2',
-			author: {
-				avatar: 'images/face-3.jpg',
-				name: 'Alexa Liras',
-				email: 'alexa@mail.com',
-			},
-			func: {
-				job: 'Programator',
-				department: 'Developer',
-			},
-			status: 0,
-			employed: '23/12/20',
-		},
-		{
-			key: '3',
-			author: {
-				avatar: 'images/face-1.jpg',
-				name: 'Laure Perrier',
-				email: 'laure@mail.com',
-			},
-			func: {
-				job: 'Executive',
-				department: 'Projects',
-			},
-			status: 1,
-			employed: '13/04/19',
-		},
-		{
-			key: '4',
-			author: {
-				avatar: 'images/face-4.jpg',
-				name: 'Miriam Eric',
-				email: 'miriam@mail.com',
-			},
-			func: {
-				job: 'Marketing',
-				department: 'Organization',
-			},
-			status: 1,
-			employed: '03/04/21',
-		},
-		{
-			key: '5',
-			author: {
-				avatar: 'images/face-5.jpeg',
-				name: 'Richard Gran',
-				email: 'richard@mail.com',
-			},
-			func: {
-				job: 'Manager',
-				department: 'Organization',
-			},
-			status: 0,
-			employed: '23/03/20',
-		},
-		{
-			key: '6',
-			author: {
-				avatar: 'images/face-6.jpeg',
-				name: 'John Levi',
-				email: 'john@mail.com',
-			},
-			func: {
-				job: 'Tester',
-				department: 'Developer',
-			},
-			status: 0,
-			employed: '14/04/17',
-		},
+    {
+      key: '1',
+      author: {
+        avatar: 'images/face-2.jpg',
+        name: 'Michael John',
+        email: 'michael@mail.com',
+      },
+      func: {
+        job: 'Manager',
+        department: 'Organization',
+      },
+      status: 1,
+      employed: '23/04/18',
+    },
+    {
+      key: '2',
+      author: {
+        avatar: 'images/face-3.jpg',
+        name: 'Alexa Liras',
+        email: 'alexa@mail.com',
+      },
+      func: {
+        job: 'Programator',
+        department: 'Developer',
+      },
+      status: 0,
+      employed: '23/12/20',
+    },
+    {
+      key: '3',
+      author: {
+        avatar: 'images/face-1.jpg',
+        name: 'Laure Perrier',
+        email: 'laure@mail.com',
+      },
+      func: {
+        job: 'Executive',
+        department: 'Projects',
+      },
+      status: 1,
+      employed: '13/04/19',
+    },
+    {
+      key: '4',
+      author: {
+        avatar: 'images/face-4.jpg',
+        name: 'Miriam Eric',
+        email: 'miriam@mail.com',
+      },
+      func: {
+        job: 'Marketing',
+        department: 'Organization',
+      },
+      status: 1,
+      employed: '03/04/21',
+    },
+    {
+      key: '5',
+      author: {
+        avatar: 'images/face-5.jpeg',
+        name: 'Richard Gran',
+        email: 'richard@mail.com',
+      },
+      func: {
+        job: 'Manager',
+        department: 'Organization',
+      },
+      status: 0,
+      employed: '23/03/20',
+    },
+    {
+      key: '6',
+      author: {
+        avatar: 'images/face-6.jpeg',
+        name: 'John Levi',
+        email: 'john@mail.com',
+      },
+      func: {
+        job: 'Tester',
+        department: 'Developer',
+      },
+      status: 0,
+      employed: '14/04/17',
+    },
+
 	];
-	
+
 	// "Projects" table list of columns and their properties.
 	const table2Columns = [
 		{
-			title: 'COMPANIES',
+			title: 'Tên lớp',
 			dataIndex: 'company',
 			scopedSlots: { customRender: 'company' },
-			width: 300,
 		},
 		{
-			title: 'BUDGET',
+			title: 'Số lượng',
 			dataIndex: 'budget',
 			class: 'font-semibold text-muted',
 		},
 		{
-			title: 'STATUS',
-			dataIndex: 'status',
-			class: 'font-semibold text-muted text-sm',
+			title: 'Huynh trưởng phụ trách',
+			dataIndex: 'budget',
+			class: 'font-semibold text-muted',
 		},
-		{
-			title: 'COMPLETION',
-			scopedSlots: { customRender: 'completion' },
-			dataIndex: 'completion',
-		},
+    {
+      title: 'Trạng thái',
+      dataIndex: 'status',
+      class: 'font-semibold text-muted text-sm',
+    },
 		{
 			title: '',
 			scopedSlots: { customRender: 'editBtn' },
@@ -275,7 +269,7 @@
 		},
 	];
 
-	export default ({
+	export default {
 		components: {
 			CardAuthorTable,
 			CardProjectTable2,
@@ -295,7 +289,7 @@
 				table2Columns: table2Columns,
 			}
 		},
-	})
+	}
 
 </script>
 

@@ -19,7 +19,7 @@ let routes = [
 	},
 	{
 		path: '/dashboard',
-		name: 'Dashboard',
+		name: 'Trang chủ',
 		layout: "dashboard",
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
@@ -45,17 +45,8 @@ let routes = [
 		component: () => import('@/views/Billing.vue'),
 	},
 	{
-		path: '/rtl',
-		name: 'RTL',
-		layout: "dashboard-rtl",
-		meta: {
-			layoutClass: 'dashboard-rtl',
-		},
-		component: () => import('@/views/RTL.vue'),
-	},
-	{
 		path: '/Profile',
-		name: 'Profile',
+		name: 'Trang cá nhân',
 		layout: "dashboard",
 		meta: {
 			layoutClass: 'layout-profile',
