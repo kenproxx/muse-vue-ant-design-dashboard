@@ -95,7 +95,6 @@
               setSession(USER_INFO, res.data);
               this.$message.success('Đăng nhập thành công');
               const userDetail = res.data.userDetail;
-              console.log(userDetail);
               if (userDetail.tenThanh === null) {
                 this.$router.push({name: 'First-Login'});
               } else {
