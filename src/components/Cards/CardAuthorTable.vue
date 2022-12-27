@@ -7,12 +7,6 @@
         <a-col :md="12" :span="24">
           <h5 class="font-semibold m-0">Danh sách đoàn sinh</h5>
         </a-col>
-        <a-col :md="12" :span="24" style="display: flex; align-items: center; justify-content: flex-end">
-          <a-radio-group v-model="authorsHeaderBtns" size="small">
-            <a-radio-button value="all">ALL</a-radio-button>
-            <a-radio-button value="online">ONLINE</a-radio-button>
-          </a-radio-group>
-        </a-col>
       </a-row>
       <br/>
           <div id="components-form-demo-advanced-search">
@@ -37,10 +31,13 @@
               <a-row>
                 <a-col :span="24" :style="{ textAlign: 'right' }">
                   <a-button html-type="submit" type="primary" size="small">
-                    Search
+                    Tìm kiếm
                   </a-button>
                   <a-button :style="{ marginLeft: '8px' }" @click="handleReset" size="small">
-                    Clear
+                    Tạo lại
+                  </a-button>
+                  <a-button :style="{ marginLeft: '8px' }" @click="handleReset" size="small">
+                    Xuất Excel
                   </a-button>
                   <a-dropdown :style="{ marginLeft: '8px' }">
                     <a class="ant-dropdown-link" @click="e => e.preventDefault()" >

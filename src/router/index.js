@@ -45,7 +45,7 @@ let routes = [
 		component: () => import('@/views/Billing.vue'),
 	},
 	{
-		path: '/Profile',
+		path: '/profile',
 		name: 'Trang cá nhân',
 		layout: "dashboard",
 		meta: {
