@@ -59,7 +59,7 @@
 						{ rules: [
                 { required: true, message: 'Vui lòng nhập mật khẩu' },
                 { pattern: /^(?=.{10,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$/,
-                 message: 'Mật khẩu phải chứa chữ Hoa, chữ thường, ký tự đặc biệt và số' },
+                 message: 'Mật khẩu phải chứa chữ Hoa, chữ thường, ký tự đặc biệt và số, tối thiểu 10 ký tự' },
                 ] },
 						]"
               type="password"

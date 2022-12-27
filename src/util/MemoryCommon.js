@@ -23,6 +23,7 @@ export function removeLocal(key) {
 }
 
 export const ACCESS_TOKEN = 'ACCESS_TOKEN'
+export const USER_INFO = 'USER_INFO'
 
 export const baseURL = 'http://localhost:3100' ;
 

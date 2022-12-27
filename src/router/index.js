@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {getSession, USER_INFO} from "@/util/MemoryCommon";
 
 Vue.use(VueRouter)
+
+
 
 let routes = [
 	{
@@ -115,6 +118,19 @@ const router = new VueRouter({
 			behavior: 'smooth',
 		}
 	}
+})
+
+router.beforeEach((to, from, next) => {
+	// chuyển đến trang login nếu chưa được login
+	const publicPages = ['/sign-in', '/sign-up'];
+	const authRequired = !publicPages.includes(to.path);
+	const loggedIn = getSession(USER_INFO);
+
+	if (authRequired && !loggedIn) {
+		return next('/sign-in');
+	}
+
+	next();
 })
 
 export default router
