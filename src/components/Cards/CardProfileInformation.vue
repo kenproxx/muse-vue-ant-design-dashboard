@@ -11,39 +11,39 @@
 				<path class="fill-muted" d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z" fill="#111827"/>
 			</svg>
 		</a-button>
-    <a-form :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" >
+    <a-form :label-col="{ span: 12 }" :wrapper-col="{ span: 12 }" :labelAlign="'left'">
       <a-row>
         <a-col :span="24">
           <a-form-item label="Tên thánh/ tên gọi Bố" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenBo">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh/ tên gọi Bố" v-else>
-            nhập vào
+            {{data.tenBo}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Số điện thoại Bố" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.sdtBo">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Số điện thoại Bố" v-else>
-            nhập vào
+            {{data.sdtBo}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Tên thánh/ tên gọi Mẹ" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenMe">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh/ tên gọi Mẹ" v-else>
-            nhập vào
+            {{data.tenMe}}
           </a-form-item>
         </a-col>
 
         <a-col :span="24">
           <a-form-item label="Số điện thoại Mẹ" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.sdtMe">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Số điện thoại Mẹ" v-else>
-            nhập vào
+            {{data.sdtMe}}
           </a-form-item>
         </a-col>
       </a-row>
@@ -56,11 +56,14 @@
 
 <script>
 
-	export default {
+	import {getUserInfo} from "@/util/MemoryCommon";
+
+  export default {
 		data() {
 			return {
         editMode: false,
-			}
+        data: getUserInfo,
+      }
 		},
 	}
 

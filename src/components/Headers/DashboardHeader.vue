@@ -92,7 +92,19 @@
             <router-link to="/profile">
               <a-avatar :size="40" src="images/face-1.jpg"/>
             </router-link>
-            <span>Tên người dùng</span>
+            <a-dropdown>
+              <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+                tên người dùng
+              </a>
+              <a-menu slot="overlay">
+                <a-menu-item>
+                  <a  href="javascript:;">Trang cá nhân</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a @click="logout">Đăng xuất</a>
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
           </div>
           <!-- / Header Control Buttons -->
 
@@ -122,6 +134,8 @@
 
 <script>
 
+import {clearLocal, clearSession} from "@/util/MemoryCommon";
+
 const notificationsData = [
   {
     title: 'New message from Sophie',
@@ -150,7 +164,7 @@ const notificationsData = [
   },
 ];
 
-export default ({
+export default {
   props: {
     // Header fixed status.
     navbarFixed: {
@@ -190,7 +204,12 @@ export default ({
       // scroller is anywhere but the top of the page.
     },
     onSearch(value) {
-    }
+    },
+    logout() {
+      clearSession();
+      clearLocal();
+      this.$router.push({name: 'Sign-In'});
+    },
   },
   mounted: function () {
     // Set the wrapper to the proper element, layout wrapper.
@@ -205,6 +224,6 @@ export default ({
     // Removing window resize event listener.
     window.removeEventListener("resize", this.resizeEventHandler);
   },
-})
+}
 
 </script>

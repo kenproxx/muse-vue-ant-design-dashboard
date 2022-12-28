@@ -11,38 +11,38 @@
         <path class="fill-muted" d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z" fill="#111827"/>
       </svg>
     </a-button>
-    <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }" >
+    <a-form :label-col="{ span: 10 }" :wrapper-col="{ span: 14 }" :labelAlign="'left'">
       <a-row>
         <a-col :span="24">
           <a-form-item label="Tên thánh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh" v-else>
-            nhập vào
+            {{data.tenThanh}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Tên thánh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh" v-else>
-            nhập vào
+            {{data.tenThanh}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Tên thánh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh" v-else>
-            nhập vào
+            {{data.tenThanh}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Tên thánh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh" v-else>
-            nhập vào
+            {{data.tenThanh}}
           </a-form-item>
         </a-col>
       </a-row>
@@ -54,7 +54,9 @@
 
 <script>
 
-	export default {
+	import {getUserInfo} from "@/util/MemoryCommon";
+
+  export default {
 		props: {
 			data: {
 				type: Array,
@@ -64,6 +66,7 @@
 		data() {
 			return {
         editMode: false,
+        data: getUserInfo,
 			}
 		},
 	}

@@ -1,4 +1,4 @@
-<!-- 
+<!--
 	This is the default layout, used in sign-in and sign-up pages.
  -->
 
@@ -9,7 +9,9 @@
 		<a-layout class="layout-default" id="layout-default" :class="[layoutClass]">
 
 			<!-- Layout Header ( Navbar ) -->
+      <div style="z-index: 9999">
 			<DefaultHeader></DefaultHeader>
+      </div>
 			<!-- / Layout Header ( Navbar ) -->
 
 

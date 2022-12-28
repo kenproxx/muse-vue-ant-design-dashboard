@@ -11,38 +11,38 @@
         <path class="fill-muted" d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z" fill="#111827"/>
       </svg>
     </a-button>
-    <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }" >
+    <a-form :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" :labelAlign="'left'">
       <a-row>
         <a-col :span="24">
           <a-form-item label="Tên thánh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên thánh" v-else>
-            nhập vào
+            {{data.tenThanh}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Tên gọi" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Tên gọi" v-else>
-            nhập vào
+            {{data.tenGoi}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Ngày sinh" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Ngày sinh" v-else>
-            nhập vào
+            {{data.ngayThangNamSinh}}
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="Số điện thoại" v-if="editMode">
-            <a-input size="small">nhập vào</a-input>
+            <a-input size="small" v-model="data.tenThanh">nhập vào</a-input>
           </a-form-item>
           <a-form-item label="Số điện thoại" v-else>
-            nhập vào
+            {{data.soDienThoaiCaNhan}}
           </a-form-item>
         </a-col>
       </a-row>
@@ -54,27 +54,13 @@
 
 <script>
 
-	export default {
+	import {getUserInfo} from "@/util/MemoryCommon";
+
+  export default {
 		data() {
 			return {
-				// Binded model property for "Platform Settings" switch button for "Email ... follows me" .
-				emailForFollows: true,
-
-				// Binded model property for "Platform Settings" switch button for "Email ... answers me" .
-				emailForAnswers: false,
-
-				// Binded model property for "Platform Settings" switch button for "Email ... mentions me" .
-				emailForMentions: true,
-
-				// Binded model property for "Platform Settings" switch button for "New launches and projects" .
-				emailForNewProjects: true,
-
-				// Binded model property for "Platform Settings" switch button for "Monthly product updates" .
-				emailForProductUpdates: false,
-
-				// Binded model property for "Platform Settings" switch button for "Subscribe to newsletter" .
-				emailForNewsletter: true,
         editMode: false,
+        data: getUserInfo,
 			}
 		},
 	}

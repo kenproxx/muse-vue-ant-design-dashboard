@@ -86,8 +86,7 @@
 <script>
 
 import axios from "axios";
-import {baseURL} from "@/util/MemoryCommon";
-import {REGISTER} from "@/api/api";
+import {baseURL, REGISTER} from "@/api/api";
 
 export default {
   data() {

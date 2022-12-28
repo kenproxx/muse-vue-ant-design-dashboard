@@ -147,7 +147,7 @@
 		},
 	] ;
 
-	export default ({
+	export default {
 		components: {
 			CardPlatformSettings,
 			CardProfileInformation,
@@ -166,7 +166,7 @@
 				projects,
 			}
 		},
-	})
+	}
 
 </script>
 
