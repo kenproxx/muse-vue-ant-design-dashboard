@@ -1,23 +1,23 @@
 <template>
-  <a-spin tip="Đang tải..." :spinning="isSpinning">
+  <a-spin :spinning="isSpinning" tip="Đang tải...">
     <div class="sign-in">
 
-      <a-row type="flex" :gutter="[24,24]" justify="space-around" align="middle">
+      <a-row :gutter="[24,24]" align="middle" justify="space-around" type="flex">
 
         <!-- Sign In Form Column -->
-        <a-col :span="24" :md="12" :lg="{span: 12, offset: 0}" :xl="{span: 6, offset: 2}" class="col-form">
+        <a-col :lg="{span: 12, offset: 0}" :md="12" :span="24" :xl="{span: 6, offset: 2}" class="col-form">
           <h1 class="mb-15">Đăng nhập</h1>
 
           <!-- Sign In Form -->
           <a-form
               id="components-form-demo-normal-login"
               :form="form"
+              :hideRequiredMark="true"
               class="login-form"
               @submit="handleSubmit"
-              :hideRequiredMark="true"
               @keydown.enter="handleSubmit"
           >
-            <a-form-item class="mb-10" label="Tên đăng nhập" :colon="false">
+            <a-form-item :colon="false" class="mb-10" label="Tên đăng nhập">
               <a-input
                   v-decorator="[
 						'username',
@@ -26,10 +26,10 @@
 						    { min: 6, message: 'Tối thiểu 5 ký tự' },
 						    { pattern: /^[a-zA-Z0-9]*$/, message: 'Không đuợc nhập chữ có dấu' },
 						  ]}
-						]"
-                  placeholder="Tên đăng nhập"/>
+						]" placeholder="Tên đăng nhập"
+                  size="small"/>
             </a-form-item>
-            <a-form-item class="mb-5" label="Mật khẩu" :colon="false">
+            <a-form-item :colon="false" class="mb-5" label="Mật khẩu">
               <a-input
                   v-decorator="[
 						'password',
@@ -37,11 +37,11 @@
                 { required: true, message: 'Vui lòng nhập mật khẩu' },
                 { min: 10, message: 'Tối thiểu 10 ký tự' },
                 ] },
-						]"
-                  type="password" placeholder="Mật khẩu"/>
+						]" placeholder="Mật khẩu"
+                  size="small" type="password"/>
             </a-form-item>
             <a-form-item>
-              <a-button type="primary" block html-type="submit" class="login-form-button">
+              <a-button block class="login-form-button" html-type="submit" size="small" type="primary">
                 SIGN IN
               </a-button>
             </a-form-item>
@@ -49,14 +49,14 @@
           <!-- / Sign In Form -->
 
           <p class="font-semibold text-muted">Chưa có tài khoản?
-            <router-link to="/sign-up" class="font-bold text-dark">Đăng ký ngay</router-link>
+            <router-link class="font-bold text-dark" to="/sign-up">Đăng ký ngay</router-link>
           </p>
         </a-col>
         <!-- / Sign In Form Column -->
 
         <!-- Sign In Image Column -->
-        <a-col :span="24" :md="12" :lg="12" :xl="12" class="col-img">
-          <img src="images/img-signin.jpg" alt="">
+        <a-col :lg="12" :md="12" :span="24" :xl="12" class="col-img">
+          <img alt="" src="images/img-signin.jpg">
         </a-col>
         <!-- Sign In Image Column -->
 
@@ -69,7 +69,7 @@
 <script>
 
 import {baseURL, LOGIN} from "@/api/api";
-import {ACCESS_TOKEN, setSession, USER_INFO} from "@/util/MemoryCommon";
+import {ACCESS_TOKEN, ROLE_USER, setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 
 export default {
@@ -95,8 +95,10 @@ export default {
             this.isSpinning = true;
             const access_token = res.data.token;
             const user_info = res.data.userDetail;
+            const role_user = res.data.role;
             setSession(ACCESS_TOKEN, access_token);
             setSession(USER_INFO, JSON.stringify(user_info));
+            setSession(ROLE_USER, JSON.stringify(role_user));
             this.$message.success('Đăng nhập thành công');
             axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
             if (user_info.tenThanh === null) {

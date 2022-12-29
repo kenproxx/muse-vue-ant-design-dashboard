@@ -33,7 +33,9 @@ export function clearLocal() {
 export const ACCESS_TOKEN = 'ACCESS_TOKEN'
 
 export const USER_INFO = 'USER_INFO'
+export const ROLE_USER = 'ROLE_USER'
 
 export const getUserInfo = JSON.parse(getSession(USER_INFO));
+export const getRoleUser = JSON.parse(getSession(ROLE_USER));
 
 

@@ -1,5 +1,5 @@
 <template>
-  <a-spin tip="Đang tải..." :spinning="isSpinning">
+  <a-spin :spinning="isSpinning" tip="Đang tải...">
     <div>
       <!-- Sign Up Image And Headings -->
       <div class="sign-up-header" style="background-image: url('images/bg-signup.jpg')">
@@ -8,48 +8,48 @@
       <!-- / Sign Up Image And Headings -->
 
       <!-- Sign Up Form -->
-      <a-card :bordered="false" class="card-first-login header-solid h-full" :bodyStyle="{paddingTop: 0}">
+      <a-card :bodyStyle="{paddingTop: 0}" :bordered="false" class="card-first-login header-solid h-full">
         <template #title>
           <h5 class="font-semibold text-center">Cập nhật thông tin cá nhân</h5>
         </template>
         <a-form
             :form="form"
-            @submit="handleSubmit"
             :labelCol="{span: 10}"
             :wrapperCol="{span: 14}"
+            @submit="handleSubmit"
             @keydown.enter="handleSubmit"
         >
           <a-row>
             <a-col :span="8">
               <a-form-item label="Tên thánh">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.tenThanh" v-decorator="[
 						'tenThanh',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.tenThanh"
                     placeholder="Tên thánh"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
               <a-form-item label="Ngày sinh">
-                <a-date-picker class="full-width"
-                               v-decorator="[
+                <a-date-picker v-model="formData.ngayThangNamSinh" v-decorator="[
 						'ngayThangNamSinh',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                               v-model="formData.ngayThangNamSinh"
+                               class="full-width"
                                placeholder="Ngày sinh"
+                               size="small"
                 />
               </a-form-item>
               <a-form-item label="Số điện thoại cá nhân">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.soDienThoaiCaNhan" v-decorator="[
 						'soDienThoaiCaNhan',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.soDienThoaiCaNhan"
                     placeholder="Số điện thoại cá nhân"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -57,32 +57,32 @@
             <a-col :span="8">
               <a-form-item label="Tên gọi">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.tenGoi" v-decorator="[
 						'tenGoi',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.tenGoi"
                     placeholder="Tên gọi"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
               <a-form-item label="Giới tính">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.gioiTinh" v-decorator="[
 						'gioiTinh',
 						]"
-                    v-model="formData.gioiTinh"
                     placeholder="Giới tính"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
               <a-form-item label="Ngày bổn mạng">
-                <a-date-picker class="full-width"
-                               v-decorator="[
+                <a-date-picker v-model="formData.ngayBonMang" v-decorator="[
 						'ngayBonMang',
 						]"
-                               v-model="formData.ngayBonMang"
+                               class="full-width"
                                placeholder="Ngày bổn mạng"
+                               size="small"
                 />
               </a-form-item>
             </a-col>
@@ -90,14 +90,14 @@
               <a-form-item label="Ảnh đại diện">
 
                 <a-upload
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                    list-type="picture-card"
-                    @preview="handlePreview"
-                    @change="handleChange"
-                    v-decorator="[
+                    v-model="anhDaiDien" v-decorator="[
 						'anhDaiDien',
 						]"
-
+                    accept="image/*"
+                    list-type="picture-card"
+                    size="small"
+                    @change="handleChange($event)"
+                    @preview="handlePreview"
                 >
                   <a-icon type="plus"/>
                   <div>
@@ -105,8 +105,8 @@
                   </div>
                 </a-upload>
 
-                <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-                  <img alt="example" style="width: 100%" :src="previewImage"/>
+                <a-modal :footer="null" :visible="previewVisible" @cancel="handleCancel">
+                  <img :src="previewImage" alt="example" style="width: 100%"/>
                 </a-modal>
               </a-form-item>
             </a-col>
@@ -115,23 +115,23 @@
           <a-row>
             <a-col :span="8">
               <a-form-item label="Ngày rửa tội">
-                <a-date-picker class="full-width"
-                               v-decorator="[
+                <a-date-picker v-model="formData.ngayRuaToi" v-decorator="[
 						'ngayRuaToi',
 						]"
-                               v-model="formData.ngayRuaToi"
+                               class="full-width"
                                placeholder="Ngày rửa tội"
+                               size="small"
                 />
               </a-form-item>
             </a-col>
             <a-col :span="8">
               <a-form-item label="Người rửa tội">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.nguoiRuaToi" v-decorator="[
 						'nguoiRuaToi',
 						]"
-                    v-model="formData.nguoiRuaToi"
                     placeholder="Người rửa tội"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -139,11 +139,11 @@
             <a-col :span="8">
               <a-form-item label="Người đỡ đầu">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.nguoiDoDauRuaToi" v-decorator="[
 						'nguoiDoDauRuaToi',
 						]"
-                    v-model="formData.nguoiDoDauRuaToi"
                     placeholder="Người đỡ đầu"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -152,23 +152,23 @@
           <a-row>
             <a-col :span="8">
               <a-form-item label="Ngày thêm sức">
-                <a-date-picker class="full-width"
-                               v-decorator="[
+                <a-date-picker v-model="formData.ngayThemSuc" v-decorator="[
 						'ngayThemSuc',
 						]"
-                               v-model="formData.ngayThemSuc"
+                               class="full-width"
                                placeholder="Ngày thêm sức"
+                               size="small"
                 />
               </a-form-item>
             </a-col>
             <a-col :span="8">
               <a-form-item label="Người thêm sức">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.nguoiThemSuc" v-decorator="[
 						'nguoiThemSuc',
 						]"
-                    v-model="formData.nguoiThemSuc"
                     placeholder="Người thêm sức"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -176,11 +176,11 @@
             <a-col :span="8">
               <a-form-item label="Người đỡ đầu">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.nguoiDoDauThemSuc" v-decorator="[
 						'nguoiDoDauThemSuc',
 						]"
-                    v-model="formData.nguoiDoDauThemSuc"
                     placeholder="Người đỡ đầu"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -192,12 +192,12 @@
             <a-col :span="12">
               <a-form-item label="Tên thánh/ tên gọi Bố">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.tenBo" v-decorator="[
 						'tenBo',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.tenBo"
                     placeholder="Tên thánh/ tên gọi Bố"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -205,15 +205,15 @@
             <a-col :span="12">
               <a-form-item label="Số điện thoại Bố">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.sdtBo" v-decorator="[
 						'sdtBo',
 						{ rules: [
                 { required: true, message: requiredField },
                 { pattern: /^[0-9]+$/, message: onlyNumber },
                 ] },
 						]"
-                    v-model="formData.sdtBo"
                     placeholder="Số điện thoại Bố"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -223,15 +223,15 @@
             <a-col :span="12">
               <a-form-item label="Tên thánh/ tên gọi Mẹ">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.tenMe" v-decorator="[
 						'tenMe',
 						{ rules: [
                 { required: true, message: requiredField },
                 { pattern: /^[0-9]+$/, message: onlyNumber },
                 ] },
 						]"
-                    v-model="formData.tenMe"
                     placeholder="Tên thánh/ tên gọi Mẹ"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -239,12 +239,12 @@
             <a-col :span="12">
               <a-form-item label="Số điện thoại Mẹ">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.sdtMe" v-decorator="[
 						'sdtMe',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.sdtMe"
                     placeholder="Số điện thoại Mẹ"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -254,12 +254,12 @@
             <a-col :span="12">
               <a-form-item label="Địa chỉ hành chính">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.diaChi" v-decorator="[
 						'diaChi',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    v-model="formData.diaChi"
                     placeholder="Địa chỉ hành chính"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -267,11 +267,11 @@
             <a-col :span="12">
               <a-form-item label="Thuộc giáo xứ">
                 <a-input
-                    v-decorator="[
+                    v-model="formData.giaoXuId" v-decorator="[
 						'giaoXuId',
 						]"
-                    v-model="formData.giaoXuId"
                     placeholder="Giáo xứ"
+                    size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -281,7 +281,7 @@
             <a-col :span="12">
               <a-form-item label="Giáo hạt">
                 <a-input
-                    placeholder="Giáo hạt (ko cần nhập)"
+                    placeholder="Giáo hạt (ko cần nhập)" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -289,7 +289,7 @@
             <a-col :span="12">
               <a-form-item label="Giáo phận">
                 <a-input
-                    placeholder="Giáo phận (ko cần nhập)"
+                    placeholder="Giáo phận (ko cần nhập)" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -298,8 +298,8 @@
           <a-form-item>
           </a-form-item>
 
-          <a-row type="flex" justify="space-around" align="middle">
-            <a-button type="primary" @click="handleSubmit">
+          <a-row align="middle" justify="space-around" type="flex">
+            <a-button size="small" type="primary" @click="handleSubmit">
               Lưu
             </a-button>
           </a-row>
@@ -312,10 +312,9 @@
 </template>
 
 <script>
-import {getUserInfo, setSession, USER_INFO} from "@/util/MemoryCommon";
+import {setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 import {baseURL, UPDATE, USER} from "@/api/api";
-import {authHeader} from "@/router/auth-header";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -336,14 +335,24 @@ export default {
       fileList: [],
       requiredField: 'Trường này là bắt buộc',
       onlyNumber: 'Chỉ nhập số',
-      formData: getUserInfo,
+      // formData: getUserInfo,
+      formData: {},
+      anhDaiDien: {},
     }
   },
   created() {
   },
   methods: {
     // Handles input validation after submission.
-    handleSubmit() {
+    async handleSubmit() {
+      let reader = new FileReader(this.fileList[0]);
+      reader.onloadend = async () => {
+        this.newImage = await reader.result;
+      };
+      await reader.readAsDataURL(this.fileList[0].toBlob);
+      this.anhDaiDien = this.newImage;
+      console.log(this.anhDaiDien);
+
       this.form.validateFields((err) => {
         if (!err) {
           axios.put(baseURL + USER + UPDATE, this.formData)
@@ -373,11 +382,14 @@ export default {
       this.previewImage = file.url || file.preview;
       this.previewVisible = true;
     },
-    handleChange({fileList}) {
-      if (fileList.length > 1) {
-        fileList.shift();
-      }
-      this.fileList = fileList;
+    // handleChange({fileList}) {
+    //   if (fileList.length > 1) {
+    //     fileList.shift();
+    //   }
+    //   this.fileList = fileList;
+    // },
+    handleChange(event) {
+      console.log(event);
     },
   },
 }
