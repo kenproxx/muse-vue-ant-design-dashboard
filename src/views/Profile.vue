@@ -17,7 +17,7 @@
 					<a-col :span="24" :md="12" class="col-info">
 						<a-avatar :size="74" shape="square" src="images/face-1.jpg" />
 						<div class="avatar-info">
-							<h4 class="font-semibold m-0">Sarah Jacob</h4>
+							<h4 class="font-semibold m-0">{{tenDayDu}}</h4>
 							<p>CEO / Co
                 -Founder</p>
 						</div>
@@ -54,7 +54,6 @@
 
 				<!-- Conversations Card -->
 				<CardConversations
-					:data="conversationsData"
 				></CardConversations>
 				<!-- / Conversations Card -->
 
@@ -72,6 +71,8 @@
 	import CardProfileInformation from "../components/Cards/CardProfileInformation"
 	import CardConversations from "../components/Cards/CardConversations"
 	import CardProject from "../components/Cards/CardProject"
+  import {data} from "browserslist";
+  import {getTenDayDu} from "@/util/MemoryCommon";
 
 	// Conversation's list data.
 	const conversationsData = [
@@ -148,6 +149,11 @@
 	] ;
 
 	export default {
+    computed: {
+      data() {
+        return data
+      }
+    },
 		components: {
 			CardPlatformSettings,
 			CardProfileInformation,
@@ -158,6 +164,7 @@
 			return {
 				// Active button for the "User Profile" card's radio button group.
 				profileHeaderBtns: 'overview',
+				tenDayDu: getTenDayDu,
 
 				// Associating Conversation's list data with its corresponding property.
 				conversationsData,

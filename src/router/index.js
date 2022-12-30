@@ -110,18 +110,18 @@ const router = new VueRouter({
 		}
 	}
 })
-
-router.beforeEach((to, from, next) => {
-	// chuyển đến trang login nếu chưa được login
-	const publicPages = ['/sign-in', '/sign-up'];
-	const authRequired = !publicPages.includes(to.path);
-	const loggedIn = getSession(USER_INFO);
-
-	if (authRequired && !loggedIn) {
-		return next('/sign-in');
-	}
-
-	next();
-})
+//
+// router.beforeEach((to, from, next) => {
+// 	// chuyển đến trang login nếu chưa được login
+// 	const publicPages = ['/sign-in', '/sign-up'];
+// 	const authRequired = !publicPages.includes(to.path);
+// 	const loggedIn = getSession(USER_INFO);
+//
+// 	if (authRequired && !loggedIn) {
+// 		return next('/sign-in');
+// 	}
+//
+// 	next();
+// })
 
 export default router

@@ -69,22 +69,6 @@
     <!-- / Table & Timeline -->
 
     <!-- Cards -->
-    <a-row :gutter="24" align="stretch" type="flex">
-      <a-col :span="24" :xl="14" class="mb-24">
-
-        <!-- Information Card 1 -->
-        <CardInfo></CardInfo>
-        <!-- / Information Card 1 -->
-
-      </a-col>
-      <a-col :span="24" :xl="10" class="mb-24">
-
-        <!-- Information Card 2 -->
-        <CardInfo2></CardInfo2>
-        <!-- / Information Card 2 -->
-
-      </a-col>
-    </a-row>
     <!-- / Cards -->
 
   </div>
@@ -107,11 +91,6 @@ import CardProjectTable from '../components/Cards/CardProjectTable';
 // Order History card component.
 import CardOrderHistory from '../components/Cards/CardOrderHistory';
 
-// Information card 1.
-import CardInfo from '../components/Cards/CardInfo';
-
-// Information card 2.
-import CardInfo2 from '../components/Cards/CardInfo2';
 
 // Counter Widgets stats
 const stats = [
@@ -209,18 +188,18 @@ const stats = [
 // "Projects" table list of columns and their properties.
 const tableColumns = [
   {
-    title: 'COMPANIES',
+    title: 'Tên lớp',
     dataIndex: 'company',
     scopedSlots: {customRender: 'company'},
     width: 300,
   },
   {
-    title: 'MEMBERS',
+    title: 'Huynh trưởng phụ trách',
     dataIndex: 'members',
     scopedSlots: {customRender: 'members'},
   },
   {
-    title: 'BUDGET',
+    title: 'Sĩ số',
     dataIndex: 'budget',
     class: 'font-bold text-muted text-sm',
   },
@@ -314,8 +293,6 @@ export default {
     WidgetCounter,
     CardProjectTable,
     CardOrderHistory,
-    CardInfo,
-    CardInfo2,
   },
   data() {
     return {

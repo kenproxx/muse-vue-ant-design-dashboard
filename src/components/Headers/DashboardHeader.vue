@@ -94,11 +94,11 @@
             </router-link>
             <a-dropdown>
               <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-                tên người dùng
+                {{ tenDayDu }}
               </a>
               <a-menu slot="overlay">
                 <a-menu-item>
-                  <a  href="javascript:;">Trang cá nhân</a>
+                  <a href="javascript:;">Trang cá nhân</a>
                 </a-menu-item>
                 <a-menu-item>
                   <a @click="logout">Đăng xuất</a>
@@ -134,7 +134,7 @@
 
 <script>
 
-import {clearLocal, clearSession} from "@/util/MemoryCommon";
+import {clearLocal, clearSession, getTenDayDu} from "@/util/MemoryCommon";
 
 const notificationsData = [
   {
@@ -191,6 +191,7 @@ export default {
 
       // Search input loading status.
       searchLoading: false,
+      tenDayDu: getTenDayDu,
 
       // The wrapper element to attach dropdowns to.
       wrapper: document.body,

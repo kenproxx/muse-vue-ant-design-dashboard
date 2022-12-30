@@ -3,20 +3,19 @@
 	<!-- Orders History Timeline Card -->
 	<a-card :bordered="false" class="header-solid h-full" :bodyStyle="{paddingTop: '12px',}">
 		<template #title>
-			<h6>Orders History</h6>			
-			<p>this month <span class="text-success">+20%</span></p>	
+			<h6>Lịch sử Đoàn</h6>
 		</template>
-		<a-timeline pending="Recording..." :reverse="timelineReverse">
+		<a-timeline  :reverse="timelineReverse">
 			<a-timeline-item color="green">
-				$2,400 - Redesign store
-				<p>09 JUN 7:20 PM</p>
+				Nay
+				<p>Date Now</p>
 			</a-timeline-item>
 			<a-timeline-item color="green">
 				New order #3654323
 				<p>08 JUN 12:20 PM</p>
 			</a-timeline-item>
 			<a-timeline-item color="blue">
-				Company server payments 
+				Company server payments
 				<p>04 JUN 3:10 PM</p>
 			</a-timeline-item>
 			<a-timeline-item color="blue">
@@ -28,8 +27,8 @@
 				<p>18 MAY 1:30 PM</p>
 			</a-timeline-item>
 			<a-timeline-item color="gray">
-				New order #46282344
-				<p>14 MAY 3:30 PM</p>
+				Thành lập đoàn Justino Đại từ
+				<p>Tháng 6 - 2015</p>
 			</a-timeline-item>
 			<template #pendingDot> </template>
 		</a-timeline>

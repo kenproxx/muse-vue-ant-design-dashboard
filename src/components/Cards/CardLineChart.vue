@@ -2,12 +2,12 @@
 
 	<a-card :bordered="false" class="dashboard-bar-line header-solid">
 		<template #title>
-			<h6>Sales Overview</h6>			
-			<p>than last year <span class="text-success">+20%</span></p>	
+			<h6>Sales Overview</h6>
+			<p>than last year <span class="text-success">+20%</span></p>
 		</template>
 		<template #extra>
-			<a-badge color="primary" class="badge-dot-primary" text="Traffic" />
-			<a-badge color="primary" class="badge-dot-secondary" text="Sales" />
+			<a-badge color="primary" class="badge-dot-primary" text="Tổng số lớp" />
+			<a-badge color="primary" class="badge-dot-secondary" text="Tổng số đoàn sinh" />
 		</template>
 		<chart-line :height="310" :data="lineChartData"></chart-line>
 	</a-card>
@@ -19,7 +19,7 @@
 	// Bar chart for "Active Users" card.
 	import ChartLine from '../Charts/ChartLine' ;
 
-	export default ({
+	export default {
 		components: {
 			ChartLine,
 		},
@@ -32,7 +32,6 @@
 					datasets: [{
 						label: "Mobile apps",
 						tension: 0.4,
-						borderWidth: 0,
 						pointRadius: 0,
 						borderColor: "#1890FF",
 						borderWidth: 3,
@@ -43,7 +42,6 @@
 					{
 						label: "Websites",
 						tension: 0.4,
-						borderWidth: 0,
 						pointRadius: 0,
 						borderColor: "#B37FEB",
 						borderWidth: 3,
@@ -54,6 +52,5 @@
 				},
 			}
 		},
-	})
-
+	}
 </script>

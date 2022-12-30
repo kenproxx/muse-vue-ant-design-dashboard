@@ -57,12 +57,6 @@
 	import {getUserInfo} from "@/util/MemoryCommon";
 
   export default {
-		props: {
-			data: {
-				type: Array,
-				default: () => [],
-			},
-		},
 		data() {
 			return {
         editMode: false,
