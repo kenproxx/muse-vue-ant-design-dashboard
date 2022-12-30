@@ -77,6 +77,11 @@
 				projectHeaderBtns: 'all',
 			}
 		},
+    methods: {
+      onSearch(value) {
+        console.log(value);
+      },
+    },
 	}
 
 </script>

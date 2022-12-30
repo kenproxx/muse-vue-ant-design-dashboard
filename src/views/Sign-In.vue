@@ -68,8 +68,8 @@
 
 <script>
 
-import {baseURL, LOGIN} from "@/api/api";
-import {ACCESS_TOKEN, ROLE_USER, setSession, USER_INFO} from "@/util/MemoryCommon";
+import {baseURL, GET_ALL_THONG_SO, LOGIN, USER} from "@/api/api";
+import {ACCESS_TOKEN, GIOI_TINH, NGANH, ROLE_USER, setLocal, setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 
 export default {
@@ -95,10 +95,10 @@ export default {
             this.isSpinning = true;
             const access_token = res.data.token;
             const user_info = res.data.userDetail;
-            const role_user = res.data.role;
+            // const role_user = res.data.role;
             setSession(ACCESS_TOKEN, access_token);
             setSession(USER_INFO, JSON.stringify(user_info));
-            setSession(ROLE_USER, JSON.stringify(role_user));
+            // setSession(ROLE_USER, JSON.stringify(role_user));
             this.$message.success('Đăng nhập thành công');
             axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
             if (user_info.tenThanh === null) {
@@ -106,6 +106,7 @@ export default {
             } else {
               this.$router.push({name: 'Home'});
             }
+            this.getThongSo();
           }).catch(() => {
             this.$message.error('Sai tên đăng nhập hoặc mật khẩu');
           }).finally(() => {
@@ -114,7 +115,26 @@ export default {
         }
       });
     },
-  },
+    getThongSo() {
+      const nganh = 'NGANH';
+      const gioiTinh = 'GIOI_TINH';
+      let listNganh = [];
+      let listGioiTinh = [];
+      axios.get(baseURL + USER + GET_ALL_THONG_SO).then(res => {
+        for (const dataKey in res.data) {
+          if (res.data[dataKey].loai == nganh) {
+            listNganh.push(res.data[dataKey]);
+          }
+          if (res.data[dataKey].loai == gioiTinh) {
+            listGioiTinh.push(res.data[dataKey]);
+          }
+        }
+        setLocal(NGANH, JSON.stringify(listNganh));
+        setLocal(GIOI_TINH, JSON.stringify(listGioiTinh));
+
+      })
+    },
+  }
 }
 
 </script>

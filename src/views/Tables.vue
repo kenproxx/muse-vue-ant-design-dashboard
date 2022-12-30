@@ -14,7 +14,8 @@
         <!-- Authors Table Card -->
         <CardAuthorTable
             :columns="table1Columns"
-            :data="table1Data"
+            :data="listUser"
+            :formData="formData"
         ></CardAuthorTable>
         <!-- / Authors Table Card -->
 
@@ -54,6 +55,9 @@ import CardAuthorTable from '../components/Cards/CardAuthorTable';
 // "Projects" table component.
 import CardProjectTable2 from '../components/Cards/CardProjectTable2';
 import Detail from '@/views/Detail-Edit.vue';
+import {getUserInfo} from "@/util/MemoryCommon";
+import axios from "axios";
+import {baseURL, GET_ALL, USER} from "@/api/api";
 
 // "Authors" table list of columns and their properties.
 const table1Columns = [
@@ -176,7 +180,7 @@ const table2Columns = [
   },
   {
     title: 'Số lượng',
-    dataIndex: 'budget',
+    dataIndex: 'number',
     class: 'font-semibold text-muted',
   },
   {
@@ -288,8 +292,40 @@ export default {
 
       // Associating "Projects" table columns with its corresponding property.
       table2Columns: table2Columns,
+      formData: getUserInfo,
+      listUser: [],
+
     }
   },
+  created() {
+    this.getAllUser();
+  },
+  methods:{
+    getAllUser() {
+      axios.get(baseURL + USER + GET_ALL)
+        .then(res => {
+          for (const resKey in res.data) {
+            let item = res.data[resKey];
+            this.listUser.push({
+              key: item.id,
+              author: {
+                avatar: item.avatar,
+                name: item.tenDayDu,
+                sdt: item.sdt,
+              },
+              func: {
+                job: item.nganh,
+                department: item.capBacHuynhTruong,
+              },
+              status: item.status,
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+  }
 }
 
 </script>

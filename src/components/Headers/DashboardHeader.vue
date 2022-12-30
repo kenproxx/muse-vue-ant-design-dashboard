@@ -1,7 +1,5 @@
 <template>
 
-  <!-- Main Sidebar -->
-  <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
 
     <!-- Layout Header -->
     <a-layout-header>
@@ -127,14 +125,12 @@
     </a-layout-header>
     <!--  /Layout Header -->
 
-  </component>
-  <!-- / Main Sidebar -->
 
 </template>
 
 <script>
 
-import {clearLocal, clearSession, getTenDayDu} from "@/util/MemoryCommon";
+import {clearLocal, clearSession, getSession, getUserInfo, USER_INFO} from "@/util/MemoryCommon";
 
 const notificationsData = [
   {
@@ -191,7 +187,7 @@ export default {
 
       // Search input loading status.
       searchLoading: false,
-      tenDayDu: getTenDayDu,
+      tenDayDu: JSON.parse(getSession(USER_INFO)).tenDayDu,
 
       // The wrapper element to attach dropdowns to.
       wrapper: document.body,

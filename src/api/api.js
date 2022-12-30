@@ -4,6 +4,7 @@ export const LOGIN = '/login'
 export const LOGOUT = '/logout'
 export const REGISTER = '/register'
 export const THONG_SO = '/parameters'
+export const GET_ALL_THONG_SO = '/get-all-thong-so'
 export const LOP = '/classes'
 
 export const USER = '/users';

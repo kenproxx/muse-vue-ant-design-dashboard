@@ -33,7 +33,7 @@
 			<a-col :span="24" :md="8" class="mb-24">
 
 				<!-- Platform Settings Card -->
-				<CardPlatformSettings></CardPlatformSettings>
+				<CardPlatformSettings/>
 				<!-- / Platform Settings Card -->
 
 			</a-col>
@@ -43,7 +43,7 @@
 			<a-col :span="24" :md="8" class="mb-24">
 
 				<!-- Profile Information Card -->
-				<CardProfileInformation></CardProfileInformation>
+				<CardProfileInformation/>
 				<!-- / Profile Information Card -->
 
 			</a-col>
@@ -53,8 +53,7 @@
 			<a-col :span="24" :md="8" class="mb-24">
 
 				<!-- Conversations Card -->
-				<CardConversations
-				></CardConversations>
+				<CardConversations/>
 				<!-- / Conversations Card -->
 
 			</a-col>
@@ -72,7 +71,7 @@
 	import CardConversations from "../components/Cards/CardConversations"
 	import CardProject from "../components/Cards/CardProject"
   import {data} from "browserslist";
-  import {getTenDayDu} from "@/util/MemoryCommon";
+  import {getUserInfo} from "@/util/MemoryCommon";
 
 	// Conversation's list data.
 	const conversationsData = [
@@ -164,7 +163,7 @@
 			return {
 				// Active button for the "User Profile" card's radio button group.
 				profileHeaderBtns: 'overview',
-				tenDayDu: getTenDayDu,
+				tenDayDu: getUserInfo.tenDayDu,
 
 				// Associating Conversation's list data with its corresponding property.
 				conversationsData,

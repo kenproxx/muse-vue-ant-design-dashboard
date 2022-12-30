@@ -7,7 +7,7 @@
   <div>
     <!-- Counter Widgets -->
     <a-row :gutter="24">
-      <a-col v-for="(stat, index) in stats" :key="index" :lg="12" :span="24" :xl="6" class="mb-24">
+      <a-col v-for="(stat, index) in data" :key="index" :lg="12" :span="24" :xl="6" class="mb-24">
         <!-- Widget 1 Card -->
         <WidgetCounter
             :icon="stat.icon"
@@ -90,10 +90,11 @@ import CardProjectTable from '../components/Cards/CardProjectTable';
 
 // Order History card component.
 import CardOrderHistory from '../components/Cards/CardOrderHistory';
+import {getLocal, NGANH} from "@/util/MemoryCommon";
 
 
-// Counter Widgets stats
-const stats = [
+// Counter Widgets data
+const data = [
   {
     title: "Chiên con",
     value: 53000,
@@ -303,8 +304,9 @@ export default {
       // Associating table columns with its corresponding property.
       tableColumns,
 
-      // Counter Widgets Stats
-      stats,
+      // Counter Widgets data
+      data,
+      value: JSON.parse(getLocal(NGANH)),
     }
   },
 }
