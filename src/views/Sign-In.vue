@@ -23,22 +23,22 @@
 						'username',
 						{ rules: [
                 { required: true, message: 'Vui lòng nhập tên đăng nhập' },
-						    { min: 6, message: 'Tối thiểu 5 ký tự' },
+						    { min: 6, message: 'Tối thiểu 6 ký tự' },
 						    { pattern: /^[a-zA-Z0-9]*$/, message: 'Không đuợc nhập chữ có dấu' },
 						  ]}
-						]" placeholder="Tên đăng nhập"
-                  size="small"/>
+						]" allowClear
+                  placeholder="Tên đăng nhập" size="small"/>
             </a-form-item>
             <a-form-item :colon="false" class="mb-5" label="Mật khẩu">
-              <a-input
+              <a-input-password
                   v-decorator="[
 						'password',
 						{ rules: [
                 { required: true, message: 'Vui lòng nhập mật khẩu' },
                 { min: 10, message: 'Tối thiểu 10 ký tự' },
                 ] },
-						]" placeholder="Mật khẩu"
-                  size="small" type="password"/>
+						]" allowClear
+                  placeholder="Mật khẩu" size="small" type="password"/>
             </a-form-item>
             <a-form-item>
               <a-button block class="login-form-button" html-type="submit" size="small" type="primary">
@@ -69,7 +69,7 @@
 <script>
 
 import {baseURL, GET_ALL_THONG_SO, LOGIN, USER} from "@/api/api";
-import {ACCESS_TOKEN, GIOI_TINH, NGANH, ROLE_USER, setLocal, setSession, USER_INFO} from "@/util/MemoryCommon";
+import {ACCESS_TOKEN, GIOI_TINH, NGANH, setLocal, setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 
 export default {

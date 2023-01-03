@@ -44,16 +44,16 @@
 						'username',
 						{ rules: [
                 { required: true, message: 'Vui lòng nhập tên đăng nhập' },
-						    { min: 6, message: 'Tối thiểu 5 ký tự' },
+						    { min: 6, message: 'Tối thiểu 6 ký tự' },
 						    { pattern: /^[a-zA-Z0-9]*$/, message: 'Không đuợc nhập chữ có dấu' },
 						  ]}
-						]" placeholder="Tên đăng nhập"
-                size="small"
+						]" allowClear
+                placeholder="Tên đăng nhập" size="small"
             >
             </a-input>
           </a-form-item>
           <a-form-item class="mb-5">
-            <a-input
+            <a-input-password
                 v-decorator="[
 						'password',
 						{ rules: [
@@ -61,11 +61,11 @@
                 { pattern: /^(?=.{10,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$/,
                  message: 'Mật khẩu phải chứa chữ Hoa, chữ thường, ký tự đặc biệt và số, tối thiểu 10 ký tự' },
                 ] },
-						]" placeholder="Mật khẩu"
-                size="small"
+						]" allowClear
+                placeholder="Mật khẩu" size="small"
                 type="password"
             >
-            </a-input>
+            </a-input-password>
           </a-form-item>
           <a-form-item>
             <a-button block class="login-form-button" html-type="submit" size="small" type="primary">

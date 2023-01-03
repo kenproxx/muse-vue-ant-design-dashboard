@@ -27,8 +27,8 @@
 						'tenThanh',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Tên thánh"
-                    size="small"
+                    allowClear
+                    placeholder="Tên thánh" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -37,9 +37,9 @@
 						'ngayThangNamSinh',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
+                               allowClear
                                class="full-width"
-                               placeholder="Ngày sinh"
-                               size="small"
+                               placeholder="Ngày sinh" size="small"
                 />
               </a-form-item>
               <a-form-item label="Số điện thoại cá nhân">
@@ -48,8 +48,8 @@
 						'soDienThoaiCaNhan',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Số điện thoại cá nhân"
-                    size="small"
+                    allowClear
+                    placeholder="Số điện thoại cá nhân" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -61,8 +61,8 @@
 						'tenGoi',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Tên gọi"
-                    size="small"
+                    allowClear
+                    placeholder="Tên gọi" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -71,8 +71,8 @@
                     v-model="formData.gioiTinh" v-decorator="[
 						'gioiTinh',
 						]"
-                    placeholder="Giới tính"
-                    size="small"
+                    allowClear
+                    placeholder="Giới tính" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -80,9 +80,9 @@
                 <a-date-picker v-model="formData.ngayBonMang" v-decorator="[
 						'ngayBonMang',
 						]"
+                               allowClear
                                class="full-width"
-                               placeholder="Ngày bổn mạng"
-                               size="small"
+                               placeholder="Ngày bổn mạng" size="small"
                 />
               </a-form-item>
             </a-col>
@@ -94,8 +94,8 @@
 						'anhDaiDien',
 						]"
                     accept="image/*"
-                    list-type="picture-card"
-                    size="small"
+                    allowClear
+                    list-type="picture-card" size="small"
                     @change="handleChange($event)"
                     @preview="handlePreview"
                 >
@@ -118,9 +118,9 @@
                 <a-date-picker v-model="formData.ngayRuaToi" v-decorator="[
 						'ngayRuaToi',
 						]"
+                               allowClear
                                class="full-width"
-                               placeholder="Ngày rửa tội"
-                               size="small"
+                               placeholder="Ngày rửa tội" size="small"
                 />
               </a-form-item>
             </a-col>
@@ -130,8 +130,8 @@
                     v-model="formData.nguoiRuaToi" v-decorator="[
 						'nguoiRuaToi',
 						]"
-                    placeholder="Người rửa tội"
-                    size="small"
+                    allowClear
+                    placeholder="Người rửa tội" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -142,8 +142,8 @@
                     v-model="formData.nguoiDoDauRuaToi" v-decorator="[
 						'nguoiDoDauRuaToi',
 						]"
-                    placeholder="Người đỡ đầu"
-                    size="small"
+                    allowClear
+                    placeholder="Người đỡ đầu" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -155,9 +155,9 @@
                 <a-date-picker v-model="formData.ngayThemSuc" v-decorator="[
 						'ngayThemSuc',
 						]"
+                               allowClear
                                class="full-width"
-                               placeholder="Ngày thêm sức"
-                               size="small"
+                               placeholder="Ngày thêm sức" size="small"
                 />
               </a-form-item>
             </a-col>
@@ -167,8 +167,8 @@
                     v-model="formData.nguoiThemSuc" v-decorator="[
 						'nguoiThemSuc',
 						]"
-                    placeholder="Người thêm sức"
-                    size="small"
+                    allowClear
+                    placeholder="Người thêm sức" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -179,8 +179,8 @@
                     v-model="formData.nguoiDoDauThemSuc" v-decorator="[
 						'nguoiDoDauThemSuc',
 						]"
-                    placeholder="Người đỡ đầu"
-                    size="small"
+                    allowClear
+                    placeholder="Người đỡ đầu" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -196,8 +196,8 @@
 						'tenBo',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Tên thánh/ tên gọi Bố"
-                    size="small"
+                    allowClear
+                    placeholder="Tên thánh/ tên gọi Bố" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -212,8 +212,8 @@
                 { pattern: /^[0-9]+$/, message: onlyNumber },
                 ] },
 						]"
-                    placeholder="Số điện thoại Bố"
-                    size="small"
+                    allowClear
+                    placeholder="Số điện thoại Bố" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -230,8 +230,8 @@
                 { pattern: /^[0-9]+$/, message: onlyNumber },
                 ] },
 						]"
-                    placeholder="Tên thánh/ tên gọi Mẹ"
-                    size="small"
+                    allowClear
+                    placeholder="Tên thánh/ tên gọi Mẹ" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -243,8 +243,8 @@
 						'sdtMe',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Số điện thoại Mẹ"
-                    size="small"
+                    allowClear
+                    placeholder="Số điện thoại Mẹ" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -258,8 +258,8 @@
 						'diaChi',
 						{ rules: [{ required: true, message: requiredField }] },
 						]"
-                    placeholder="Địa chỉ hành chính"
-                    size="small"
+                    allowClear
+                    placeholder="Địa chỉ hành chính" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -270,8 +270,8 @@
                     v-model="formData.giaoXuId" v-decorator="[
 						'giaoXuId',
 						]"
-                    placeholder="Giáo xứ"
-                    size="small"
+                    allowClear
+                    placeholder="Giáo xứ" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -281,7 +281,7 @@
             <a-col :span="12">
               <a-form-item label="Giáo hạt">
                 <a-input
-                    placeholder="Giáo hạt (ko cần nhập)" size="small"
+                    allowClear placeholder="Giáo hạt (ko cần nhập)" size="small"
                 >
                 </a-input>
               </a-form-item>
@@ -289,7 +289,7 @@
             <a-col :span="12">
               <a-form-item label="Giáo phận">
                 <a-input
-                    placeholder="Giáo phận (ko cần nhập)" size="small"
+                    allowClear placeholder="Giáo phận (ko cần nhập)" size="small"
                 >
                 </a-input>
               </a-form-item>
