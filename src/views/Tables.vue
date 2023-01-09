@@ -63,6 +63,7 @@ const table1Columns = [
     title: 'STT',
     dataIndex: 'stt',
     width: '10%',
+    align: 'center',
   },
   {
     title: 'Người dùng',
@@ -74,7 +75,8 @@ const table1Columns = [
     title: 'Cấp bậc',
     dataIndex: 'func',
     scopedSlots: {customRender: 'func'},
-    width: '10%',
+    width: '13%',
+    align: 'center',
     ellipsis: true,
   },
   {
@@ -87,6 +89,7 @@ const table1Columns = [
   {
     title: 'Thao tác',
     scopedSlots: {customRender: 'action'},
+    align: 'center',
   },
 ];
 

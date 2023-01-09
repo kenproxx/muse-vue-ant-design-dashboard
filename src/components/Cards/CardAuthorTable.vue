@@ -190,8 +190,6 @@ export default {
     },
 
     handleListParam(giaTri, loai) {
-      console.log('listNganh', this.listNganh);
-      console.log('listCapBac', this.listCapBac);
       switch (loai) {
         case NGANH:
           return this.listNganh.find(item => giaTri == item.giaTri).ten;
@@ -200,11 +198,6 @@ export default {
         default:
           return giaTri;
       }
-      // for (const item of this.listNganh) {
-      //   if (giaTri == item.giaTri) {
-      //     return item.ten
-      //   }
-      // }
     },
   },
 }
