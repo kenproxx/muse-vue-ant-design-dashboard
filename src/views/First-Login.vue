@@ -227,7 +227,6 @@
 						'tenMe',
 						{ rules: [
                 { required: true, message: requiredField },
-                { pattern: /^[0-9]+$/, message: onlyNumber },
                 ] },
 						]"
                     allowClear
@@ -241,7 +240,8 @@
                 <a-input
                     v-model="formData.sdtMe" v-decorator="[
 						'sdtMe',
-						{ rules: [{ required: true, message: requiredField }] },
+						{ rules: [{ required: true, message: requiredField },
+						    { pattern: /^[0-9]+$/, message: onlyNumber },] },
 						]"
                     allowClear
                     placeholder="Số điện thoại Mẹ" size="small"
@@ -315,6 +315,7 @@
 import {setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 import {baseURL, UPDATE, USER} from "@/api/api";
+import {userInfo} from "@/views/Sign-In";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -333,6 +334,7 @@ export default {
       isSpinning: false,
       previewImage: '',
       fileList: [],
+      userInfo,
       requiredField: 'Trường này là bắt buộc',
       onlyNumber: 'Chỉ nhập số',
       // formData: getUserInfo,
@@ -345,15 +347,8 @@ export default {
   methods: {
     // Handles input validation after submission.
     async handleSubmit() {
-      let reader = new FileReader(this.fileList[0]);
-      reader.onloadend = async () => {
-        this.newImage = await reader.result;
-      };
-      await reader.readAsDataURL(this.fileList[0].toBlob);
-      this.anhDaiDien = this.newImage;
-      console.log(this.anhDaiDien);
-
       this.form.validateFields((err) => {
+        this.formData.username = this.userInfo.username;
         if (!err) {
           axios.put(baseURL + USER + UPDATE, this.formData)
               .then(response => {
@@ -382,14 +377,11 @@ export default {
       this.previewImage = file.url || file.preview;
       this.previewVisible = true;
     },
-    // handleChange({fileList}) {
-    //   if (fileList.length > 1) {
-    //     fileList.shift();
-    //   }
-    //   this.fileList = fileList;
-    // },
-    handleChange(event) {
-      console.log(event);
+    handleChange({fileList}) {
+      if (fileList.length > 1) {
+        fileList.shift();
+      }
+      this.fileList = fileList;
     },
   },
 }

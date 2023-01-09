@@ -10,20 +10,28 @@
       </a-row>
       <br/>
       <div id="components-form-demo-advanced-search">
-        <a-form :form="form" class="ant-advanced-search-form" @submit="handleSearch" :label-col="{ span: 5 }" :wrapper-col="{ span: 16 }">
-          <a-row :gutter="24" >
-            <a-col :span="8">
-              <a-form-item  label="Tên đăng nhập">
+        <a-form :form="form" class="ant-advanced-search-form" @submit="handleSearch" :label-col="{ span: 8 }"
+                :wrapper-col="{ span: 15 }">
+          <a-row :gutter="24">
+            <a-col :span="12">
+              <a-form-item label="Tên đăng nhập">
                 <a-input placeholder="placeholder" size="small"/>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item  label="Tên người dùng">
+            <a-col :span="12">
+              <a-form-item label="Tên người dùng">
                 <a-input placeholder="placeholder" size="small"/>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item  label="Lớp">
+          </a-row>
+          <a-row :gutter="24">
+            <a-col :span="12">
+              <a-form-item label="Lớp">
+                <a-input placeholder="placeholder" size="small"/>
+              </a-form-item>
+            </a-col>
+            <a-col :span="12">
+              <a-form-item label="Ngành">
                 <a-input placeholder="placeholder" size="small"/>
               </a-form-item>
             </a-col>
@@ -40,8 +48,9 @@
                 Xuất Excel
               </a-button>
               <a-dropdown :style="{ marginLeft: '8px' }">
-                <a class="ant-dropdown-link" @click="e => e.preventDefault()" >
-                  Thao tác hàng loạt <a-icon type="down" />
+                <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+                  Thao tác hàng loạt
+                  <a-icon type="down"/>
                 </a>
                 <a-menu slot="overlay">
                   <a-menu-item>
@@ -61,7 +70,7 @@
       </div>
     </template>
     <a-table :columns="columns" :data-source="data" :loading="loading"
-             :pagination="pagination"
+             :pagination="pagination" :scroll="{ y: 240 }"
              :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }" @change="change">
 
       <template slot="author" slot-scope="author">
@@ -69,25 +78,24 @@
           <a-avatar :src="author.avatar" shape="square"/>
           <div class="avatar-info">
             <h6>{{ author.name }}</h6>
-            <p>{{ author.sdt }}</p>
+            <p>{{ author.username }}</p>
           </div>
         </div>
       </template>
 
       <template slot="func" slot-scope="func">
         <div class="author-info">
-          <h6 class="m-0">{{ func.job }}</h6>
-          <p class="m-0 font-regular text-muted">{{ func.department }}</p>
+          <h6 class="m-0">{{ handleListParam(func.nganh, NGANH) }}</h6>
         </div>
       </template>
 
-      <template slot="status" slot-scope="status">
+      <template slot="status" slot-scope="status" >
         <a-tag :class="status ? 'ant-tag-primary' : 'ant-tag-muted'" class="tag-status">
           {{ status == 1 ? "Hoạt động" : "Không hoạt động" }}
         </a-tag>
       </template>
 
-      <template slot="editBtn" slot-scope="row,text, record">
+      <template slot="action" slot-scope="row,text, record">
         <a-button :data-id="row.key" class="btn-edit" type="link">
           Chi tiết
         </a-button>
@@ -120,6 +128,8 @@
 </template>
 
 <script>
+import {NGANH, CAP_BAC} from '@/util/MemoryCommon'
+import {listNganh, listCapBac} from '@/views/Sign-In'
 
 export default {
   props: {
@@ -138,13 +148,12 @@ export default {
         total: this.totalItems,
         showSizeChanger: true,
         showQuickJumper: true,
-        showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+        showTotal: (total) => `Tổng số dòng ${total}`,
         size: 'small',
       };
     },
-    count() {
-      return this.expand ? 11 : 7;
-    },
+  },
+  created() {
   },
   data() {
     return {
@@ -154,6 +163,10 @@ export default {
       loading: false,
       expand: false,
       form: this.$form.createForm(this, {name: 'advanced_search'}),
+      listNganh,
+      listCapBac,
+      NGANH,
+      CAP_BAC,
     }
   },
   methods: {
@@ -176,8 +189,22 @@ export default {
       this.form.resetFields();
     },
 
-    toggle() {
-      this.expand = !this.expand;
+    handleListParam(giaTri, loai) {
+      console.log('listNganh', this.listNganh);
+      console.log('listCapBac', this.listCapBac);
+      switch (loai) {
+        case NGANH:
+          return this.listNganh.find(item => giaTri == item.giaTri).ten;
+        case CAP_BAC:
+          return this.listCapBac.find(item => giaTri == item.giaTri).ten;
+        default:
+          return giaTri;
+      }
+      // for (const item of this.listNganh) {
+      //   if (giaTri == item.giaTri) {
+      //     return item.ten
+      //   }
+      // }
     },
   },
 }

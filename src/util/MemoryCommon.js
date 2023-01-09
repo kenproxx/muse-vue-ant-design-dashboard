@@ -33,18 +33,11 @@ export function clearLocal() {
 export const ACCESS_TOKEN = 'ACCESS_TOKEN'
 export const NGANH = 'NGANH'
 export const GIOI_TINH = 'GIOI_TINH'
+export const CAP_BAC = 'CAP_BAC'
 
 export const USER_INFO = 'USER_INFO'
 export const ROLE_USER = 'ROLE_USER'
 
-export const getUserInfo = JSON.parse(getSession(USER_INFO));
-
-// export function getUserInfo() {
-//     if(getSession(USER_INFO)) {
-//         return JSON.parse(getSession(USER_INFO));
-//     }
-//     return JSON.parse(getSession(USER_INFO));
-// };
 export const getNganhInfo = JSON.parse(getLocal(NGANH));
 export const getGioiTinhInfo = JSON.parse(getLocal(GIOI_TINH));
 

@@ -42,7 +42,7 @@
             </a-form-item>
             <a-form-item>
               <a-button block class="login-form-button" html-type="submit" size="small" type="primary">
-                SIGN IN
+                Đăng nhập
               </a-button>
             </a-form-item>
           </a-form>
@@ -68,9 +68,14 @@
 
 <script>
 
-import {baseURL, GET_ALL_THONG_SO, LOGIN, USER} from "@/api/api";
-import {ACCESS_TOKEN, GIOI_TINH, NGANH, setLocal, setSession, USER_INFO} from "@/util/MemoryCommon";
+import {baseURL, GET_ALL_THONG_SO, LOGIN, THONG_SO, USER} from "@/api/api";
+import {ACCESS_TOKEN, CAP_BAC, GIOI_TINH, NGANH, setLocal, setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
+
+let userInfo = {}
+const listGioiTinh = []
+const listNganh = []
+const listCapBac = []
 
 export default {
   data() {
@@ -94,14 +99,13 @@ export default {
           axios.post(baseURL + LOGIN, values).then(res => {
             this.isSpinning = true;
             const access_token = res.data.token;
-            const user_info = res.data.userDetail;
-            // const role_user = res.data.role;
+             userInfo = res.data.userDetail;
             setSession(ACCESS_TOKEN, access_token);
-            setSession(USER_INFO, JSON.stringify(user_info));
+            setSession(USER_INFO, JSON.stringify(userInfo));
             // setSession(ROLE_USER, JSON.stringify(role_user));
             this.$message.success('Đăng nhập thành công');
             axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
-            if (user_info.tenThanh === null) {
+            if (userInfo.tenThanh === null) {
               this.$router.push({name: 'First-Login'});
             } else {
               this.$router.push({name: 'Home'});
@@ -116,27 +120,28 @@ export default {
       });
     },
     getThongSo() {
-      const nganh = 'NGANH';
-      const gioiTinh = 'GIOI_TINH';
-      let listNganh = [];
-      let listGioiTinh = [];
-      axios.get(baseURL + USER + GET_ALL_THONG_SO).then(res => {
-        for (const dataKey in res.data) {
-          if (res.data[dataKey].loai == nganh) {
-            listNganh.push(res.data[dataKey]);
-          }
-          if (res.data[dataKey].loai == gioiTinh) {
-            listGioiTinh.push(res.data[dataKey]);
+      axios.get(baseURL + THONG_SO).then(res => {
+        for (const item of res.data) {
+          switch (item.loai) {
+            case NGANH:
+              listNganh.push(item);
+              break;
+            case GIOI_TINH:
+              listGioiTinh.push(item);
+              break;
+            case CAP_BAC:
+              listCapBac.push(item);
+              break;
           }
         }
-        setLocal(NGANH, JSON.stringify(listNganh));
-        setLocal(GIOI_TINH, JSON.stringify(listGioiTinh));
-
       })
     },
   }
 }
 
+
+
+export {userInfo, listNganh, listCapBac, listGioiTinh}
 </script>
 
 <style lang="scss">

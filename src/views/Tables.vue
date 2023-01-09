@@ -15,7 +15,6 @@
         <CardAuthorTable
             :columns="table1Columns"
             :data="listUser"
-            :formData="formData"
         ></CardAuthorTable>
         <!-- / Authors Table Card -->
 
@@ -55,121 +54,42 @@ import CardAuthorTable from '../components/Cards/CardAuthorTable';
 // "Projects" table component.
 import CardProjectTable2 from '../components/Cards/CardProjectTable2';
 import Detail from '@/views/Detail-Edit.vue';
-import {getUserInfo} from "@/util/MemoryCommon";
 import axios from "axios";
 import {baseURL, GET_ALL, USER} from "@/api/api";
 
 // "Authors" table list of columns and their properties.
 const table1Columns = [
   {
+    title: 'STT',
+    dataIndex: 'stt',
+    width: '10%',
+  },
+  {
     title: 'Người dùng',
     dataIndex: 'author',
     scopedSlots: {customRender: 'author'},
+    ellipsis: true,
   },
   {
     title: 'Cấp bậc',
     dataIndex: 'func',
     scopedSlots: {customRender: 'func'},
+    width: '10%',
+    ellipsis: true,
   },
   {
     title: 'Trạng thái',
     dataIndex: 'status',
     scopedSlots: {customRender: 'status'},
+    align: 'center',
+    width: '17%',
   },
   {
     title: 'Thao tác',
-    scopedSlots: {customRender: 'editBtn'},
+    scopedSlots: {customRender: 'action'},
   },
 ];
 
-// "Authors" table list of rows and their properties.
-const table1Data = [
-  {
-    key: '1',
-    author: {
-      avatar: 'images/face-2.jpg',
-      name: 'Michael John',
-      email: 'michael@mail.com',
-    },
-    func: {
-      job: 'Manager',
-      department: 'Organization',
-    },
-    status: 1,
-    employed: '23/04/18',
-  },
-  {
-    key: '2',
-    author: {
-      avatar: 'images/face-3.jpg',
-      name: 'Alexa Liras',
-      email: 'alexa@mail.com',
-    },
-    func: {
-      job: 'Programator',
-      department: 'Developer',
-    },
-    status: 0,
-    employed: '23/12/20',
-  },
-  {
-    key: '3',
-    author: {
-      avatar: 'images/face-1.jpg',
-      name: 'Laure Perrier',
-      email: 'laure@mail.com',
-    },
-    func: {
-      job: 'Executive',
-      department: 'Projects',
-    },
-    status: 1,
-    employed: '13/04/19',
-  },
-  {
-    key: '4',
-    author: {
-      avatar: 'images/face-4.jpg',
-      name: 'Miriam Eric',
-      email: 'miriam@mail.com',
-    },
-    func: {
-      job: 'Marketing',
-      department: 'Organization',
-    },
-    status: 1,
-    employed: '03/04/21',
-  },
-  {
-    key: '5',
-    author: {
-      avatar: 'images/face-5.jpeg',
-      name: 'Richard Gran',
-      email: 'richard@mail.com',
-    },
-    func: {
-      job: 'Manager',
-      department: 'Organization',
-    },
-    status: 0,
-    employed: '23/03/20',
-  },
-  {
-    key: '6',
-    author: {
-      avatar: 'images/face-6.jpeg',
-      name: 'John Levi',
-      email: 'john@mail.com',
-    },
-    func: {
-      job: 'Tester',
-      department: 'Developer',
-    },
-    status: 0,
-    employed: '14/04/17',
-  },
-
-];
 
 // "Projects" table list of columns and their properties.
 const table2Columns = [
@@ -282,7 +202,6 @@ export default {
   data() {
     return {
       // Associating "Authors" table data with its corresponding property.
-      table1Data: table1Data,
 
       // Associating "Authors" table columns with its corresponding property.
       table1Columns: table1Columns,
@@ -292,7 +211,6 @@ export default {
 
       // Associating "Projects" table columns with its corresponding property.
       table2Columns: table2Columns,
-      formData: getUserInfo,
       listUser: [],
 
     }
@@ -304,20 +222,18 @@ export default {
     getAllUser() {
       axios.get(baseURL + USER + GET_ALL)
         .then(res => {
-          for (const resKey in res.data) {
-            let item = res.data[resKey];
+          for (const element of res.data) {
             this.listUser.push({
-              key: item.id,
+              key: element.id,
               author: {
-                avatar: item.avatar,
-                name: item.tenDayDu,
-                sdt: item.sdt,
+                avatar: element.avatar,
+                name: element.tenDayDu,
+                username: element.username,
               },
               func: {
-                job: item.nganh,
-                department: item.capBacHuynhTruong,
+                nganh: element.nganh,
               },
-              status: item.status,
+              status: element.status,
             });
           }
         })
