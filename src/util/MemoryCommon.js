@@ -38,8 +38,6 @@ export const CAP_BAC = 'CAP_BAC'
 export const USER_INFO = 'USER_INFO'
 export const ROLE_USER = 'ROLE_USER'
 
-export const getNganhInfo = JSON.parse(getLocal(NGANH));
-export const getGioiTinhInfo = JSON.parse(getLocal(GIOI_TINH));
 
 
 

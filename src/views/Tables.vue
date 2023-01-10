@@ -97,6 +97,12 @@ const table1Columns = [
 // "Projects" table list of columns and their properties.
 const table2Columns = [
   {
+    title: 'STT',
+    dataIndex: 'stt',
+    width: '10%',
+    align: 'center',
+  },
+  {
     title: 'Tên lớp',
     dataIndex: 'company',
     scopedSlots: {customRender: 'company'},

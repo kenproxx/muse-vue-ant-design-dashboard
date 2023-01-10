@@ -110,7 +110,7 @@ export default {
             } else {
               this.$router.push({name: 'Home'});
             }
-            this.getThongSo();
+            this.setThongSo();
           }).catch(() => {
             this.$message.error('Sai tên đăng nhập hoặc mật khẩu');
           }).finally(() => {
@@ -119,18 +119,27 @@ export default {
         }
       });
     },
-    getThongSo() {
+    setThongSo() {
       axios.get(baseURL + THONG_SO).then(res => {
         for (const item of res.data) {
           switch (item.loai) {
             case NGANH:
-              listNganh.push(item);
+              listNganh.push({
+                value: item.giaTri,
+                label: item.ten
+              });
               break;
             case GIOI_TINH:
-              listGioiTinh.push(item);
+              listGioiTinh.push({
+                value: item.giaTri,
+                label: item.ten
+              });
               break;
             case CAP_BAC:
-              listCapBac.push(item);
+              listCapBac.push({
+                value: item.giaTri,
+                label: item.ten
+              });
               break;
           }
         }

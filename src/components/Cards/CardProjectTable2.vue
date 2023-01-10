@@ -22,26 +22,13 @@
       </a-row>
     </div>
     <br>
-    <a-table :columns="columns" :data-source="data" :pagination="false">
-
-			<template slot="name" slot-scope="text">
-				<a>{{ text }}</a>
-			</template>
-
-			<a-space slot="members" slot-scope="members" :size="-12" class="avatar-chips">
-				<template v-for="member in members">
-					<a-avatar :key="member" size="small" :src="member" />
-				</template>
-			</a-space>
+    <a-table :columns="columns" :data-source="data" :pagination="pagination">
 
 			<template slot="company" slot-scope="company">
 				<h6 class="m-0">
-					<img :src="company.logo" width="25" style="margin-right: 10px;">
 					{{ company.name }}
 				</h6>
 			</template>
-
-
 			<template slot="editBtn" slot-scope="row">
 				<a-button type="link" :data-id="row.key">
 					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,6 +58,17 @@
 				default: () => [],
 			},
 		},
+    computed: {
+      pagination() {
+        return {
+          total: this.totalItems,
+          showSizeChanger: true,
+          showQuickJumper: true,
+          showTotal: (total) => `Tổng số dòng ${total}`,
+          size: 'small',
+        };
+      },
+    },
 		data() {
 			return {
 				// Active button for the "Projects" table's card header radio button group.

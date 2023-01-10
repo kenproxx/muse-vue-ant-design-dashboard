@@ -15,24 +15,25 @@
           <a-row :gutter="24">
             <a-col :span="12">
               <a-form-item label="Tên đăng nhập">
-                <a-input placeholder="placeholder" size="small"/>
+                <a-input placeholder="Nhập Tên đăng nhập" allowClear size="small"/>
               </a-form-item>
             </a-col>
             <a-col :span="12">
               <a-form-item label="Tên người dùng">
-                <a-input placeholder="placeholder" size="small"/>
+                <a-input placeholder="Nhập Tên người dùng" allowClear size="small"/>
               </a-form-item>
             </a-col>
           </a-row>
           <a-row :gutter="24">
             <a-col :span="12">
               <a-form-item label="Lớp">
-                <a-input placeholder="placeholder" size="small"/>
+                <a-input placeholder="Chọn Lớp" allowClear size="small"/>
               </a-form-item>
             </a-col>
             <a-col :span="12">
               <a-form-item label="Ngành">
-                <a-input placeholder="placeholder" size="small"/>
+                <a-select size="small" allowClear placeholder="Chọn Ngành" style="width: 100%" :options="listNganh">
+                </a-select>
               </a-form-item>
             </a-col>
           </a-row>
@@ -192,9 +193,9 @@ export default {
     handleListParam(giaTri, loai) {
       switch (loai) {
         case NGANH:
-          return this.listNganh.find(item => giaTri == item.giaTri).ten;
+          return this.listNganh.find(item => giaTri == item.value).label;
         case CAP_BAC:
-          return this.listCapBac.find(item => giaTri == item.giaTri).ten;
+          return this.listCapBac.find(item => giaTri == item.value).label;
         default:
           return giaTri;
       }
