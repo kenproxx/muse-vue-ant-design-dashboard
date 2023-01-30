@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import {getSession, USER_INFO} from "@/util/MemoryCommon";
+import {ACCESS_TOKEN, getSession, USER_INFO} from "@/util/MemoryCommon";
+import axios from "axios";
+import {baseURL} from "@/api/api";
 
 Vue.use(VueRouter)
 
@@ -24,7 +26,7 @@ let routes = [
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard.vue'),
+		component: () => import(/* webpackChunkName: "dashboard" */ '@/views/quan-ly-doan-sinh/Dashboard.vue'),
 	},
 	{
 		path: '/layout',
@@ -33,16 +35,16 @@ let routes = [
 		component: () => import('@/views/Layout.vue'),
 	},
 	{
-		path: '/tables',
-		name: 'Tables',
+		path: '/students',
+		name: 'Quản lý đoàn sinh',
 		layout: "dashboard",
-		component: () => import('@/views/Tables.vue'),
+		component: () => import('@/views/quan-ly-doan-sinh'),
 	},
 	{
-		path: '/billing',
-		name: 'Billing',
+		path: '/class',
+		name: 'Quản lý lớp học',
 		layout: "dashboard",
-		component: () => import('@/views/Billing.vue'),
+		component: () => import('@/views/quan-ly-lop/index.vue'),
 	},
 	{
 		path: '/profile',
@@ -51,12 +53,12 @@ let routes = [
 		meta: {
 			layoutClass: 'layout-profile',
 		},
-		component: () => import('@/views/Profile.vue'),
+		component: () => import('@/views/nguoi-dung/Profile.vue'),
 	},
 	{
 		path: '/sign-in',
 		name: 'Sign-In',
-		component: () => import('@/views/Sign-In.vue'),
+		component: () => import('@/views/nguoi-dung/Sign-In.vue'),
 	},
 	{
 		path: '/sign-up',
@@ -64,7 +66,7 @@ let routes = [
 		meta: {
 			layoutClass: 'layout-sign-up',
 		},
-		component: () => import('@/views/Sign-Up.vue'),
+		component: () => import('@/views/nguoi-dung/Sign-Up.vue'),
 	},
 	{
 		path: '/first-login',
@@ -72,7 +74,7 @@ let routes = [
 		meta: {
 			layoutClass: 'layout-sign-up',
 		},
-		component: () => import('@/views/First-Login'),
+		component: () => import('@/views/nguoi-dung/First-Login'),
 	},
 ]
 
@@ -123,5 +125,10 @@ router.beforeEach((to, from, next) => {
 
 	next();
 })
+
+
+
+
+
 
 export default router

@@ -315,7 +315,7 @@
 import {setSession, USER_INFO} from "@/util/MemoryCommon";
 import axios from "axios";
 import {baseURL, UPDATE, USER} from "@/api/api";
-import {userInfo} from "@/views/Sign-In";
+import {userInfo} from "@/views/nguoi-dung/Sign-In";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {

@@ -1,7 +1,7 @@
 <template>
 
 	<!-- Layout Footer -->
-	<a-layout-footer>
+	<a-layout-footer style="margin-bottom: 0; padding-bottom: 5px">
 		<a-row type="flex">
 			<a-col :span="24" :md="12">
 

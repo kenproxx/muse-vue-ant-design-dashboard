@@ -1,12 +1,27 @@
-import {USER_INFO, getSession, ACCESS_TOKEN} from "@/util/MemoryCommon";
+import { getSession, ACCESS_TOKEN} from "@/util/MemoryCommon";
+import {baseURL} from "@/api/api";
+import axios from "axios";
 
-export function authHeader() {
-    let user = JSON.parse(getSession(USER_INFO));
-    let accessToken = getSession(ACCESS_TOKEN);
+export const fetchClient = () => {
+    const defaultOptions = {
+        baseURL: baseURL,
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
 
-    if (user.token && accessToken) {
-        return { 'Authorization': 'Bearer ' + accessToken };
-    } else {
-        return {};
-    }
-}
+    // Create instance
+    let instance = axios.create(defaultOptions);
+
+    // Set the AUTH token for any request
+    instance.interceptors.request.use(function (config) {
+        const token = getSession(ACCESS_TOKEN);
+        config.headers.Authorization =  token ? `Bearer ${token}` : '';
+        return config;
+    });
+
+    return instance;
+};
+
+export default fetchClient();
